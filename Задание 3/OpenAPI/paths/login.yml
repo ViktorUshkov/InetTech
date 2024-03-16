@@ -1,0 +1,47 @@
+post:
+  description: Вход в систему
+  tags:
+    - Аутентификация
+  parameters:
+    - $ref: common/i18n_param.yml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              description: Адрес электронной почты пользователя
+              type: string
+              format: email
+            password:
+              description: Пароль пользователя
+              type: string
+              format: password
+          example:
+            email: my_email@example.com
+            password: VeryStr0ngPassword
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                description: Токен для авторизации
+                type: string
+                format: byte
+            example:
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJc3N1ZXIgKGlzcykiOiJJc3N1ZXIiLCJJc3N1ZWQgQXQgKGlhdCkiOiIyMDI0LTAzLTE2VDAwOjQwOjQzLjcyOFoiLCJFeHBpcmF0aW9uIFRpbWUgKGV4cCkiOiIyMDI0LTAzLTE2VDAxOjQwOjQzLjcyOFoiLCJTdWJqZWN0IChzdWIpIjoiU3ViamVjdCIsIlVzZXJuYW1lIChhdWQpIjoiSmF2YUd1aWRlcyIsIlJvbGUiOiJBRE1JTiJ9.nmMfHJ749_uL6y34bFM7ixyAeK85sj9b1Djfl0FJoEM
+    '400':
+      description: Ошибка
+      headers:
+        $ref: "common/i18n_header.yml"
+      content:
+        application/json:
+          schema:
+            $ref: "common/error.yml"
+    '401':
+      description: Ошибка аутентификации

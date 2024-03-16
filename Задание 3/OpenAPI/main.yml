@@ -1,0 +1,32 @@
+openapi: '3.0.2'
+info:
+  title: API для микропроектирования
+  version: '1.0'
+
+tags:
+  - name: Аутентификация
+    description: Метод аутентификации пользователей
+  - name: Восстановление пароля
+    description: Метод восстановления пароля пользователя
+  - name: Выход из системы
+    description: Метод выхода из системы
+  - name: Регистрация
+    description: Метод регистрации пользователя в системе
+
+paths:
+  /log-in:
+    $ref: "paths/login.yml"
+  /log-out:
+    $ref: "paths/logout.yml"
+  /sign-up:
+    $ref: "paths/signup.yml"
+  /send-password-recovery-letter:
+    $ref: "paths/send_password_recovery_letter.yml"
+  /check-password-recovery-token:
+    $ref: "paths/check_password_recovery_token.yml"
+  /change-password:
+    $ref: "paths/change_password.yml"
+
+components:
+  securitySchemes:
+    $ref: "security/jwt.yml"

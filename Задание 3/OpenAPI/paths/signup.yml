@@ -1,0 +1,34 @@
+post:
+  description: Регистрация пользователя в системе
+  tags:
+    - Регистрация в системе
+  parameters:
+    - $ref: common/i18n_param.yml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              description: Адрес электронной почты пользователя
+              type: string
+              format: email
+            password:
+              description: Пароль пользователя
+              type: string
+              format: password
+          example:
+            email: my_email@example.com
+            password: VeryStr0ngPassword
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: Ошибка
+      headers:
+        $ref: "common/i18n_header.yml"
+      content:
+        application/json:
+          schema:
+            $ref: "common/error.yml"
